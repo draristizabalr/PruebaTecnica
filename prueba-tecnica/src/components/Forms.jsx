@@ -1,21 +1,20 @@
+import { PropTypes } from 'prop-types'
 import { TableForm } from './TableForm.jsx'
 import { tables } from '../constants.js'
 
-function Forms({ process }) {
+export function Forms({ table, functions }) {
 
   return (
     <>
-      <div className='w-full h-full flex flex-col gap-6 py-4 justify-center items-center'>
-        {
-          Object.keys(tables).map(tableName => {
-            return (
-              <TableForm format={tables[tableName]} tableName={tableName} key={tableName}></TableForm>
-            )
-          })
-        }
+      <div className='flex flex-col gap-6 py-4 justify-center items-center'>
+        <TableForm format={tables[table]} tableName={table} key={table} functions={functions}></TableForm>
       </div>
     </>
   )
 }
 
-export default Forms
+
+Forms.propTypes = {
+  table: PropTypes.string,
+  functions: PropTypes.object,
+}

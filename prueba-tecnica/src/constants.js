@@ -7,5 +7,9 @@ export const tables ={
   solicitud: [
     {name: 'RESUMEN', type: 'text', id:'2-1'},
     {name: 'DESCRIPCION', type: 'textarea', id:'2-2'},
+  ],
+  login: [
+    {name: 'USUARIO', type: 'text', id:'3-1'},
+    {name: 'CONTRASEÑA', type: 'password', id:'3-2'},
   ]
 }
