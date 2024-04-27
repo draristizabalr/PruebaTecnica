@@ -15,6 +15,14 @@ export function TableForm({ format, tableName }) {
             })
           }
         </fieldset>
+        <div className="w-full flex justify-center items-center gap-14 my-2">
+          <button type="submit" className="w-20 p-1 border rounded-lg border-gray-600 bg-cyan-400 text-slate-50">
+            {tableName === 'empleados' ? 'Registrar' : 'Enviar'}
+          </button>
+          <button className="w-20 p-1 border rounded-lg border-gray-600 bg-red-400 text-slate-50">
+            Cancelar
+          </button>
+        </div>
       </form>
   )
 }
