@@ -23,8 +23,8 @@ export function TableForm({ format, tableName, functions }) {
   }
   
   return (
-    <div className="w-fit flex flex-col justify-center align-center p-4">
-      <form className="w-[450px] flex flex-col justify-center align-center border border-dashed border-gray-500 rounded-md p-4" onSubmit={handleSubmit}>
+    <div className="w-fit flex flex-col justify-center align-center p-4 ">
+      <form className="w-[450px] flex flex-col justify-center align-center border border-dashed border-gray-500 rounded-md bg-slate-50 p-4" onSubmit={handleSubmit}>
           {
             format.map(column => {
               return (
@@ -47,42 +47,7 @@ export function TableForm({ format, tableName, functions }) {
             </button>
           }
         </div>
-      </form>
-      {
-        tableName !== 'login' && data.length !== 0 && 
-          <div className="w-full my-4 border-2 border-gray-800">
-            <h1 className="text-center text-2xl">Registro</h1>
-            <table className="w-full">
-              <thead className="sticky top-0 bg-blue-400">
-                <tr>
-                  {
-                    Object.keys(data[0]).map(col => {
-                      
-                      return (
-                        <th key={col} className="lowercase first-letter:uppercase text-xl border border-gray-600 px-4 py-1">{col}</th>
-                      )
-                    })
-                  }
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  {
-                    Object.values(data[0]).map((val, index) => {
-                      
-                      return (
-                        <td key={index} className="border border-gray-400 text-center text-lg">{
-                          index == 2 ? 
-                          new Date(val).toISOString().split('T')[0]:
-                          val}</td>
-                      )
-                    })
-                  }
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        }
+      </form>     
     </div>
   )
 }

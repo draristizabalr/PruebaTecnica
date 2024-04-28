@@ -17,11 +17,12 @@ export function LoginPage({ getAuthenticated }){
       else{
         
         const authentication = await login(event)
-        const token = await authentication.json()
+        const header = await authentication.json()
 
         const auth = authentication.status == 200 ? true : false
 
-        window.sessionStorage.setItem('token', token['token'] )
+        window.sessionStorage.setItem('token', header['token'] )
+        window.sessionStorage.setItem('role', header['message']['role'])
 
         await getAuthenticated(auth)
         

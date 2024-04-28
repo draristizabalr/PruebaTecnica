@@ -4,6 +4,7 @@ import { API_URL } from '../constants'
 export function useCRUD( tableName ) {
   const url = API_URL + tableName
   const token = window.sessionStorage.getItem('token')
+  const role = window.sessionStorage.getItem('role')
 
   const ver = async () => {
     const response = await fetch(url, {
@@ -16,14 +17,20 @@ export function useCRUD( tableName ) {
 
   
 
-  const crear = async (event) => {
+  const crear = async (event, keys) => {
     event.preventDefault()
 
-    const form = new FormData(event.target)
-    const nombre = form.get('nombre')
-    const fecha_ingreso = form.get('fecha_ingreso')
-    const salario = form.get('salario')
+    if(role !== 'empleado' && tableName !== 'solicitud') return console.log('No tienes permisos para realizar esta acción')
 
+    const form = new FormData(event.target)
+
+    let body = {}
+
+    console.log(keys)
+
+    keys.forEach((key) => {
+      body[key] = form.get(key)
+    })
 
     const response = await fetch(url, {
       method: 'POST',
@@ -31,11 +38,7 @@ export function useCRUD( tableName ) {
         'Content-Type': 'application/json',
         'Authorization': token
       },
-      body: JSON.stringify({
-        nombre: nombre,
-        fecha_ingreso: fecha_ingreso,
-        salario: salario
-      })
+      body: JSON.stringify(body)
     })
 
     const data = await response.json()
@@ -45,6 +48,8 @@ export function useCRUD( tableName ) {
 
   const eliminar = async (event) => {
     event.preventDefault()
+
+    if(role === 'empleado') return console.log('No tienes permisos para realizar esta acción')
 
     const form = new FormData(event.target)
     const id = form.get('id')
@@ -67,7 +72,7 @@ export function useCRUD( tableName ) {
 
   const functions = {
     ver: () => ver(),
-    crear: (event) => crear(event),
+    crear: (event, keys) => crear(event, keys),
     eliminar: (event) => eliminar(event),
   }
 

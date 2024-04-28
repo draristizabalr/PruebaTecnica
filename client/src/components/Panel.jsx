@@ -11,6 +11,8 @@ export function Panel({ tableName }) {
 
   const [option, setOption] = useState(null)
 
+  const [role, setRole] = useState(window.sessionStorage.getItem('role'))
+
   const cancel = (event) => {
     event.preventDefault()
 
@@ -18,7 +20,11 @@ export function Panel({ tableName }) {
   }
 
   const functions = {
-    button1: async (event) => await CRUDfunctions[option](event),
+    button1: async (event) => {
+      const keys = tables[tableName].map((field) => field.name)
+      
+      return await CRUDfunctions[option](event, keys)      
+    },
     button2: (event) => cancel(event)
   }
 
@@ -29,6 +35,11 @@ export function Panel({ tableName }) {
           {
             panelButtons[tableName].map(button => {
               return (
+                role === 'empleado' && button.name === 'crear' && tableName !== 'solicitud' 
+                || 
+                role === 'empleado' && button.name === 'eliminar'
+                ? 
+                null :
                 <button key={button.name} className={"w-44 h-12 p-1 border border-gray-600 rounded-lg text-slate-50 text-lg cursor-pointer  hover:scale-105 active:bg-opacity-80 " + button['bg-color']} onClick={() =>setOption(button.name)}>
                   {button.label}
                 </button>

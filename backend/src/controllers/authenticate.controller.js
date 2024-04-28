@@ -47,11 +47,12 @@ const authentication = async (req, res, next) => {
     if(!correct_password) return res.status(401).json({message: false})
 
     user.id_empleado = response.rows[0].id_empleado
+    user.role = response.rows[0].role
 
     const accessToken = generateAccessToken(user)
   
     res.header('authorization', accessToken).json({
-      message: true,
+      message: {username: username, role: response.rows[0].role},
       token: accessToken
     })
   }catch (error){

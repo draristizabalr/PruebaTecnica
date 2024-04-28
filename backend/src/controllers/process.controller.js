@@ -60,6 +60,12 @@ const updateRow = async (req, res, next) => {
   const { table, id } = req.params;
   const {nombre, fecha_ingreso, salario} = req.body;
 
+  const { authorization } = req.headers;
+
+  const { role } = jwt.verify(authorization, process.env.SECRET)
+
+  if(role === 'empleado') return res.status(401).json({message: 'No tienes permisos para realizar esta acción'})
+
   try{
     const result = await pool.query(`UPDATE ${table} SET nombre = $1, fecha_ingreso = $2, salario = $3 WHERE id = $4 RETURNING *`, [nombre, fecha_ingreso, salario, id])
 
@@ -75,6 +81,12 @@ const updateRow = async (req, res, next) => {
 const deleteRow = async (req, res, next) => {
 
   const { table, id } = req.params;
+
+  const { authorization } = req.headers;
+
+  const { role } = jwt.verify(authorization, process.env.SECRET)
+
+  if(role === 'empleado') return res.status(401).json({message: 'No tienes permisos para realizar esta acción'})
 
   try {
     if(id){

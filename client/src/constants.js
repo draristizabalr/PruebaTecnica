@@ -50,6 +50,11 @@ export const panelButtons = {
       label: 'Enviar Solicitud',
       name: 'crear',
       'bg-color': 'bg-green-400'
+    },
+    {
+      label: 'Eliminar Solicitud',
+      name: 'eliminar',
+      'bg-color': 'bg-red-400'
     }
   ]
 }
