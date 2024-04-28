@@ -6,15 +6,12 @@ export function TableForm({ format, tableName, functions }) {
   const labelButton = {
     empleados: 'Registrar',
     solicitud: 'Enviar',
-    login: 'Ingresar'
+    login: 'Ingresar',
+    eliminar: 'Eliminar'
   }
   
   return (
-      <form className="w-[400px] flex flex-col justify-center align-center" onSubmit={functions.button1}>
-        <fieldset className="border border-dashed border-gray-500 rounded-md p-4">
-          {
-            tableName !== 'login' &&
-            <legend className="text-sm lowercase first-letter:uppercase px-2">{tableName}</legend>}
+      <form className="w-[400px] flex flex-col justify-center align-center border border-dashed border-gray-500 rounded-md p-4" onSubmit={functions.button1}>
           {
             format.map(column => {
               return (
@@ -22,7 +19,7 @@ export function TableForm({ format, tableName, functions }) {
               )
             })
           }
-        </fieldset>
+        
         <div className="w-full flex justify-center items-center gap-14 my-2">
           <button type="submit" className="w-20 p-1 border rounded-lg border-gray-600 bg-cyan-400 text-slate-50">
             {labelButton[tableName]}

@@ -1,21 +1,12 @@
 import { Forms } from './Forms.jsx'
-import { useState } from 'react'
+import { useLogin } from '../hooks/useLogin.js'
 
 export function LoginPage(){
   
-  const [usuario, setUsuario] = useState({USUARIO: '', CONTRASEÑA: ''})
-  const functions = {
-    button1: (event) => {
-      event.preventDefault()
-      const form = new FormData(event.target)
-      const credenciales = {
-        USUARIO: form.get('USUARIO'),
-        CONTRASEÑA: form.get('CONTRASEÑA')
-      }
-      setUsuario(credenciales)
+  const { login } = useLogin()
 
-      console.log(usuario)
-    },
+  const functions = {
+    button1: (event) => login(event),
     button2: (event) => {
       event.preventDefault()
       console.log('button2')

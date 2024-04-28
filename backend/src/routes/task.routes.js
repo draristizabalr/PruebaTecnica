@@ -9,8 +9,12 @@ const {
 
 const router = Router();
 
-// Servicios CRUD para tabla empleados
+// Welcome API page
+router.get('/', (req, res) => {
+  res.send('¡Welcome to the backend API!')
+});
 
+// Servicios CRUD para tabla empleados
 router.get('/:table', getRows);
 
 router.get('/:table/:id', getRows);
