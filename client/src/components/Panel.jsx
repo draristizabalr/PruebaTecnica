@@ -25,7 +25,6 @@ export function Panel({ tableName }) {
   return (
     <>
       <div className='h-screen w-screen overflow-hidden'>
-        {/* <LoginPage></LoginPage> */}
         <header className="relative top-10 flex flex-row justify-center gap-x-14">
           {
             panelButtons[tableName].map(button => {
