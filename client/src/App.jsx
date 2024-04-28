@@ -1,6 +1,7 @@
 import './App.css'
 import { useEffect, useState,  } from 'react'
 import { LoginPage } from './components/LoginPage.jsx'
+import { Panel } from './components/Panel.jsx'
 import Modal from './components/Modal.jsx'
 
 function App() {
@@ -34,17 +35,26 @@ function App() {
   return (
     <>
       <div className='h-screen w-screen overflow-hidden flex flex-col gap-6 py-4 justify-center items-center'>
-        
-      <LoginPage getAuthenticated={getAuthenticated}></LoginPage>
-
+      
+      {
+        table 
+        ? 
+        <Panel tableName={table}></Panel>
+        :
+        <LoginPage getAuthenticated={getAuthenticated}></LoginPage>
+      }
       <Modal isOpen={modalOpen} getClose={getClose}>
-        <button value="empleados" onClick={(event) => handleClick(event)}>
-          Empleados
-        </button>
-        <button value="solicitud" onClick={(event) => handleClick(event)}>
-          Solicitud
-        </button>
+        <h1 className="mb-6 p-0 text-center text-2xl text-blue-600">Seleccionar Opción</h1>
+        <div className="w-full flex flex-row justify-center items-center gap-10 ">
+          <button className="w-32 h-12 px-2 py-1 text-lg border rounded border-gray-600 bg-green-400 text-slate-100 hover:opacity-80 active:scale-95" value="empleados" onClick={(event) => handleClick(event)}>
+            Empleados
+          </button>
+          <button className="w-32 h-12 px-2 py-1 text-lg border rounded border-gray-600 bg-red-400 text-slate-100 hover:opacity-80 active:scale-95" value="solicitud" onClick={(event) => handleClick(event)}>
+            Solicitud
+          </button>
+        </div>
       </Modal>
+
          
       </div>
     </>

@@ -1,3 +1,5 @@
+DROP DATABASE IF EXISTS konecta;
+
 CREATE DATABASE konecta;
 
 \c konecta;
@@ -22,6 +24,9 @@ CREATE TABLE users(
   id SERIAL PRIMARY KEY,
   username VARCHAR(50) NOT NULL UNIQUE,
   password VARCHAR(255) NOT NULL,
+  role VARCHAR(50) NOT NULL,
   id_empleado INT NOT NULL UNIQUE,
   FOREIGN KEY (id_empleado) REFERENCES empleados(ID)
 );
+
+INSERT INTO empleados (NOMBRE, FECHA_INGRESO, SALARIO) VALUES ('David Aristizabal', '2024-04-26', 3500000);

@@ -17,7 +17,7 @@ const createUser = async (req, res, next) => {
       id_empleado
     ]
 
-    await pool.query('INSERT INTO users (username, password, id_empleado) VALUES ($1, $2, $3)', user)
+    await pool.query("INSERT INTO users (username, password, id_empleado, role) VALUES ($1, $2, $3, 'empleado')", user)
 
     res.send('La cuenta ha sido registrada')
   }catch (error){
@@ -27,7 +27,8 @@ const createUser = async (req, res, next) => {
 
 const authentication = async (req, res, next) => {
   const { username, password } = req.body;
-  const user = {username: username, password: password}
+
+  const user = {username: username}
 
   try{
     const response = await pool.query('SELECT * FROM users WHERE username = $1', [username])
@@ -43,9 +44,9 @@ const authentication = async (req, res, next) => {
 
     const correct_password = await checkUser(password, response.rows[0].password)
 
-    console.log(correct_password)
-
     if(!correct_password) return res.status(401).json({message: false})
+
+    user.id_empleado = response.rows[0].id_empleado
 
     const accessToken = generateAccessToken(user)
   

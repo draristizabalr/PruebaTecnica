@@ -1,4 +1,8 @@
 const pool = require('../db');
+const jwt = require('jsonwebtoken')
+const { config } = require('dotenv')
+const { v4: uuidv4 } = require('uuid');
+config()
 
 
 const getRows = async (req, res, next) => {
@@ -22,18 +26,34 @@ const getRows = async (req, res, next) => {
   }
 }
 
-const createRow = async (req, res, next) => {
-    const { table } = req.params
-
-    const { nombre, fecha_ingreso, salario} = req.body;
-    
+const createEmpleados = async (req, res, next) => { 
+    const { nombre, fecha_ingreso, salario } = req.body;
+  
     try {
-      const result = await pool.query(`INSERT INTO ${table} (nombre, fecha_ingreso, salario) VALUES ($1, $2, $3) RETURNING *`, [nombre, fecha_ingreso, salario] )
+      const result = await pool.query(`INSERT INTO empleados (nombre, fecha_ingreso, salario) VALUES ($1, $2, $3) RETURNING *`, [nombre, fecha_ingreso, salario] )
 
       res.send(result.rows);
     }catch (error) {
       next(error)
     }
+}
+
+const createSolicitud = async (req, res, next) => {
+  const { resumen, descripcion } = req.body;
+
+  const { authorization } = req.headers;
+
+  const { id_empleado } = jwt.verify(authorization, process.env.SECRET)
+
+  const codigo = uuidv4()
+
+  try {
+    const result = await pool.query(`INSERT INTO solicitud (codigo, descripcion, resumen, id_empleado) VALUES ($1, $2, $3, $4) RETURNING *`, [codigo, descripcion, resumen, id_empleado] )
+
+    res.send(result.rows);
+  }catch (error) {
+    next(error)
+  }
 }
 
 const updateRow = async (req, res, next) => {
@@ -83,7 +103,8 @@ const deleteRow = async (req, res, next) => {
 
 module.exports = {
     getRows,
-    createRow,
+    createEmpleados,
+    createSolicitud,
     updateRow,
     deleteRow,
 }

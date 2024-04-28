@@ -22,8 +22,8 @@ const Modal = ({ isOpen, getClose, children }) => {
 
   return (
     <div className="flex justify-center items-center fixed top-0 left-0 w-full h-full bg-slate-950/50">
-      <div className="bg-slate-100 p-12 border rounded-md relative">
-        <span className="absolute top-2 right-4 cursor-pointer text-xl" onClick={() => getClose(false)}>&times;</span>
+      <div className="bg-slate-100 p-6 border rounded-md relative">
+        <span className="flex justify-center items-center w-6 h-6 absolute right-6 top-4 cursor-pointer text-xs border rounded-md border-gray-600 bg-gray-300 " onClick={() => getClose(false)}>✖️</span>
         {children}
       </div>
     </div>
@@ -32,7 +32,7 @@ const Modal = ({ isOpen, getClose, children }) => {
 
 Modal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
+  getClose: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired
 };
 

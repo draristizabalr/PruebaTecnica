@@ -2,7 +2,8 @@ const { Router } = require('express');
 const pool = require('../db');
 const { 
   getRows,
-  createRow,
+  createEmpleados,
+  createSolicitud,
   updateRow,
   deleteRow
 } = require('../controllers/process.controller');
@@ -29,7 +30,9 @@ router.get('/:table', validateToken, getRows);
 
 router.get('/:table/:id', getRows);
 
-router.post('/:table', createRow);
+router.post('/empleados', createEmpleados);
+
+router.post('/solicitud', createSolicitud);
 
 router.put('/:table', updateRow);
 
