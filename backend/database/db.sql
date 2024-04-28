@@ -17,3 +17,11 @@ CREATE TABLE solicitud(
   ID_EMPLEADO INT NOT NULL,
   FOREIGN KEY (ID_EMPLEADO) REFERENCES empleados(ID)
 );
+
+CREATE TABLE users(
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(50) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  id_empleado INT NOT NULL UNIQUE,
+  FOREIGN KEY (id_empleado) REFERENCES empleados(ID)
+);

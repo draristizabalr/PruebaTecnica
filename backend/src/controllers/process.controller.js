@@ -1,5 +1,6 @@
 const pool = require('../db');
 
+
 const getRows = async (req, res, next) => {
   const { table, id } = req.params;
 
@@ -78,9 +79,11 @@ const deleteRow = async (req, res, next) => {
   }
 }
 
+
+
 module.exports = {
     getRows,
     createRow,
     updateRow,
-    deleteRow
+    deleteRow,
 }

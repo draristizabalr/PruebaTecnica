@@ -18,6 +18,7 @@ export function TableForm({ format, tableName, functions }) {
     empleados: 'Registrar',
     solicitud: 'Enviar',
     login: 'Ingresar',
+    register: 'Registrar',
     eliminar: 'Eliminar'
   }
   
@@ -48,7 +49,7 @@ export function TableForm({ format, tableName, functions }) {
         </div>
       </form>
       {
-        data.length !== 0 &&
+        tableName !== 'login' && data.length !== 0 && 
           <div className="w-full my-4 border-2 border-gray-800">
             <h1 className="text-center text-2xl">Registro</h1>
             <table className="w-full">

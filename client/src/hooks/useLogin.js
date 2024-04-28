@@ -1,32 +1,59 @@
-import { useState } from 'react'
+import { API_URL } from '../constants'
 
 export function useLogin() {
-  const [user, setUser] = useState(null)
-  const [password, setPassword] = useState(null)
 
   const login = async (event) => {
     event.preventDefault()
 
+    const url = API_URL + 'login'
+
     const form = new FormData(event.target)
     
-    setUser(form.get('usuario'))
-    setPassword(form.get('contraseña'))
+    const username = form.get('usuario')
+    const passwordNotHash = form.get('contraseña')
 
-    const response = await fetch('http://localhost:3000/login', {
+    const response = await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        username: user,
-        password: password
+        username: username,
+        password: passwordNotHash
       })
     })
 
-    const data = await response.json()
+    const data = await response
 
     return data
   }
 
-  return { login }
+  const register = async (event) => {
+    event.preventDefault()
+
+    const url = API_URL + 'register'
+
+    const form = new FormData(event.target)
+
+    const username = form.get('usuario')
+    const password = form.get('contraseña')
+    const id_empleado = form.get('numero de empleado')
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+        id_empleado: id_empleado
+      })
+    })
+    const data = await response
+
+    return data
+  }
+
+  return { login, register }
 }

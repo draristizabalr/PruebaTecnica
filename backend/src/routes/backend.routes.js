@@ -6,6 +6,11 @@ const {
   updateRow,
   deleteRow
 } = require('../controllers/process.controller');
+const { 
+  authentication,
+  validateToken,
+  createUser
+ } = require('../controllers/authenticate.controller')
 
 const router = Router();
 
@@ -14,8 +19,13 @@ router.get('/', (req, res) => {
   res.send('¡Welcome to the backend API!')
 });
 
+// Autenticación de usuario
+router.post('/login', authentication)
+
+router.post('/register', createUser)
+
 // Servicios CRUD para tabla empleados
-router.get('/:table', getRows);
+router.get('/:table', validateToken, getRows);
 
 router.get('/:table/:id', getRows);
 

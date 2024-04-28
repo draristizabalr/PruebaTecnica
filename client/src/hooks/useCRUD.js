@@ -3,9 +3,12 @@ import { API_URL } from '../constants'
 
 export function useCRUD( tableName ) {
   const url = API_URL + tableName
+  const token = window.sessionStorage.getItem('token')
 
   const ver = async () => {
-    const response = await fetch(url)
+    const response = await fetch(url, {
+      headers:{'Authorization': token}
+    })
     const data = await response.json()
 
     return data
@@ -25,7 +28,8 @@ export function useCRUD( tableName ) {
     const response = await fetch(url, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': token
       },
       body: JSON.stringify({
         nombre: nombre,
@@ -48,7 +52,8 @@ export function useCRUD( tableName ) {
     const response = await fetch(url + `/${id}`, {
       method: 'DELETE',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': token
       },
       body: JSON.stringify({
         id: id

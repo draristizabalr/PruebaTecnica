@@ -12,8 +12,13 @@ export const tables ={
     {name: 'usuario', type: 'text', id:'3-1'},
     {name: 'contraseña', type: 'password', id:'3-2'},
   ],
+  register:[
+    {name: 'usuario', type: 'text', id:'4-1'},
+    {name: 'contraseña', type: 'password', id:'4-2'},
+    {name: 'numero de empleado', type: 'number', id:'4-3'},
+  ],
   eliminar: [
-    {name: 'id', type: 'number', id:'4-1'},
+    {name: 'id', type: 'number', id:'5-1'},
   ],
 }
 
