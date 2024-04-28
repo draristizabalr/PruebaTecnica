@@ -4,14 +4,14 @@ import { API_URL } from '../constants'
 export function useCRUD( tableName ) {
   const url = API_URL + tableName
 
-  const ver = async (event) => {
-    event.preventDefault()
-
+  const ver = async () => {
     const response = await fetch(url)
     const data = await response.json()
 
     return data
   }
+
+  
 
   const crear = async (event) => {
     event.preventDefault()
@@ -61,7 +61,7 @@ export function useCRUD( tableName ) {
   }
 
   const functions = {
-    ver: (event) => ver(event),
+    ver: () => ver(),
     crear: (event) => crear(event),
     eliminar: (event) => eliminar(event),
   }

@@ -29,7 +29,7 @@ const createRow = async (req, res, next) => {
     try {
       const result = await pool.query(`INSERT INTO ${table} (nombre, fecha_ingreso, salario) VALUES ($1, $2, $3) RETURNING *`, [nombre, fecha_ingreso, salario] )
 
-      res.json(result.rows);
+      res.send(result.rows);
     }catch (error) {
       next(error)
     }

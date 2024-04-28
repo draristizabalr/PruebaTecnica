@@ -9,7 +9,6 @@ export function LoginPage(){
     button1: (event) => login(event),
     button2: (event) => {
       event.preventDefault()
-      console.log('button2')
     },
   }
 
