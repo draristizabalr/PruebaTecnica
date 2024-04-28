@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const pool = require('../db');
 const { 
-  getAllRows,
+  getRows,
   createRow,
   updateRow,
   deleteRow
@@ -11,13 +11,19 @@ const router = Router();
 
 // Servicios CRUD para tabla empleados
 
-router.get('/empleados', getAllRows);
+router.get('/:table', getRows);
 
-router.post('/empleados', createRow);
+router.get('/:table/:id', getRows);
 
-router.put('/empleados', updateRow);
+router.post('/:table', createRow);
 
-router.delete('/empleados', deleteRow);
+router.put('/:table', updateRow);
+
+router.put('/:table/:id', updateRow);
+
+router.delete('/:table', deleteRow);
+
+router.delete('/:table/:id', deleteRow);
 
 
 module.exports = router;
