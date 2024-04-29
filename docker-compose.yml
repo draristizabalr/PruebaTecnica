@@ -5,7 +5,7 @@ services:
     build:
       context: ./backend-prueba/postgres
       dockerfile: Dockerfile
-    image: postgres
+    image: db_backend
     restart: always
     shm_size: 128mb
     environment:
@@ -24,10 +24,20 @@ services:
     build:
       context: ./backend-prueba
       dockerfile: Dockerfile
-    image: nodejs
+    image: node_backend
     container_name: nodejs
     restart: unless-stopped
     env_file: ./backend-prueba/.env
     ports:
-      - "3000:3000"      
+      - "3000:3000"
+
+  frontend:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    image: frontend_react
+    container_name: frontend
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
   

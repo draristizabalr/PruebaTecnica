@@ -1,3 +1,2 @@
 Start-Process powershell -ArgumentList '-NoProfile -ExecutionPolicy Bypass -File "script\powershell\iniciarBackend.ps1" -Verb RunAs'
 Start-Process powershell -ArgumentList '-NoProfile -ExecutionPolicy Bypass -File "script\powershell\iniciarFrontEnd.ps1" -Verb RunAs'
-Start-Process powershell -ArgumentList '-NoProfile -ExecutionPolicy Bypass -File "script\powershell\crearBasedeDatos.ps1" -Verb RunAs'
