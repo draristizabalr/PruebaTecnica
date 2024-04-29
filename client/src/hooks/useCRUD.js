@@ -20,7 +20,7 @@ export function useCRUD( tableName ) {
   const crear = async (event, keys) => {
     event.preventDefault()
 
-    if(role !== 'empleado' && tableName !== 'solicitud') return console.log('No tienes permisos para realizar esta acción')
+    if(role === 'empleado' && tableName !== 'solicitud') return console.log('No tienes permisos para realizar esta acción')
 
     const form = new FormData(event.target)
 

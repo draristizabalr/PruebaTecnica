@@ -28,11 +28,17 @@ export function Panel({ tableName }) {
     button2: (event) => cancel(event)
   }
 
+  const Logout = () => { 
+    window.sessionStorage.clear()
+    window.location.reload()
+    setRole(null)
+  }
   return (
     <>
       <div className='h-screen w-screen overflow-hidden'>
         <header className="relative top-10 flex flex-row justify-center gap-x-14">
           {
+            role &&
             panelButtons[tableName].map(button => {
               return (
                 role === 'empleado' && button.name === 'crear' && tableName !== 'solicitud' 
@@ -45,6 +51,10 @@ export function Panel({ tableName }) {
                 </button>
               )
             })
+          }
+          {
+            role &&
+            <button className="w-44 h-12 p-1 border border-gray-600 rounded-lg text-slate-50 text-lg cursor-pointer  hover:scale-105 active:bg-opacity-80 bg-indigo-400" onClick={Logout}>Cerrar sesión</button>
           }
         </header>
         <main className="w-full h-fit flex justify-center items-center my-40">
