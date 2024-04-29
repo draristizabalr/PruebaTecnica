@@ -1,7 +1,3 @@
-CREATE DATABASE konecta;
-
-\c konecta;
-
 CREATE TABLE empleados (
   ID SERIAL PRIMARY KEY,
   NOMBRE VARCHAR(50) NOT NULL,
@@ -28,3 +24,5 @@ CREATE TABLE users(
 );
 
 INSERT INTO empleados (NOMBRE, FECHA_INGRESO, SALARIO) VALUES ('David Aristizabal', '2024-04-26', 3500000);
+
+INSERT INTO users (username, password, role, id_empleado) VALUES ('David', 'admin', 'administrador', 1); 
