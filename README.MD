@@ -28,7 +28,8 @@ Para entrar al modo desarrollo de la aplicación es necesario tener instalado No
 Para desplegar en modo desarrollador se debe tener una terminal de powershell en la carpeta del proyecto y se escribe el comando ". .\script\powershell\setup.ps1". Esto abrirá dos terminales las cuales desplegarán los dos componentes de nuestro proyecto (front-end y back-end).
 
 --- Seguridad
-El proyecto como seguridad tiene varios parametros, entre ellos: uso de JWT (JSON Web Token) para la autenticación del usuario al ingresar a la página. Se tiene un código de encriptado de la contraseña para la cuenta, también todos los procesos usan middlewares de autenticación con JWT.
+El proyecto como seguridad tiene varios parametros, entre ellos: uso de JWT (JSON Web Token) para la autenticación del usuario al ingresar a la página. Se tiene un código de Encriptado de la contraseña para la cuenta, también todos los procesos usan middlewares de autenticación con JWT.
+Manejo de archivo .env para el uso de las variables de seguridad, como por ejemplo: DB_HOST, SECRET (firma oculta para el JWT), DB_USERNAME, entre otras ...
 
 --- Mejores prácticas
 La página en React se componetiso para tener más claro que sección está creando cada parte del proyecto.
