@@ -18,3 +18,20 @@ Los pasos para instalar e iniciar el proyecto son:
 5) En el momento de terminada la instalaciín e iniciación del contenedor, abrimos el navegador de internet e ingresamos a http://localhost:3000
 
 *IMPORTANTE*: Nunca cerrar la ventana de la terminal donde se escribió el comando "docker compose up --build"
+
+*POSTDATA*: El parametro "--build" en el comando "docker compose up" solo es necesario agregarlo la primera vez que se vaya a levantar el contenedor, después de la primera vez ya no es necesario agregarlo. Esto ayuda a que sea un poco más rápido y eficiente las siguientes veces que se vaya a levantar el contenedor.
+
+
+--- Entrar al modo desarrollo de la aplicación
+Para entrar al modo desarrollo de la aplicación es necesario tener instalado Node js, React, Vite y PostgresSQL en nuestro computador.
+
+Para desplegar en modo desarrollador se debe tener una terminal de powershell en la carpeta del proyecto y se escribe el comando ". .\script\powershell\setup.ps1". Esto abrirá dos terminales las cuales desplegarán los dos componentes de nuestro proyecto (front-end y back-end).
+
+--- Seguridad
+El proyecto como seguridad tiene varios parametros, entre ellos: uso de JWT (JSON Web Token) para la autenticación del usuario al ingresar a la página. Se tiene un código de encriptado de la contraseña para la cuenta, también todos los procesos usan middlewares de autenticación con JWT.
+
+--- Mejores prácticas
+La página en React se componetiso para tener más claro que sección está creando cada parte del proyecto.
+Se usó tecnologías como Tailwind CSS para el uso de estilos en el fron-end
+El backend tiene un framework de NodeJs llamado Express, el cual genera una mejora en el manejo de las urls y los servicios, además de dar seguridad al proyecto
+Con el docker-compose, se depliega el proyecto en producción de forma facil y eficiente y con los scripts de powershell en modo desarrollador
